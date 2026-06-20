@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Environment variables (contains DB password, JWT secret)
+.env
+
+# Build output
+dist/
+build/
+
+# Logs
+npm-debug.log*
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
