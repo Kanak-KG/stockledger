@@ -1,13 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
   body {
-    @apply bg-paper text-ink font-body antialiased;
+    @apply bg-surface text-body font-body antialiased;
   }
-  h1, h2, h3, h4 {
+
+  h1, h2, h3, h4, h5 {
     @apply font-display;
+  }
+}
+
+@layer components {
+  /* ---- Gradient text ---- */
+  .text-gradient {
+    background: linear-gradient(135deg, #818CF8 0%, #C4B5FD 50%, #FCD34D 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-violet {
+    background: linear-gradient(135deg, #5B21B6, #818CF8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ---- Glass card (used on landing dark sections) ---- */
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-light {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+  }
+
+  /* ---- Buttons ---- */
+  .btn-primary {
+    @apply bg-indigo hover:bg-violet text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 shadow-md hover:shadow-glow-violet hover:-translate-y-0.5;
+  }
+
+  .btn-outline {
+    @apply border border-white/20 text-white hover:bg-white/10 font-medium px-6 py-3 rounded-xl transition-all duration-200;
+  }
+
+  /* ---- Stat cards inside app ---- */
+  .stat-card {
+    @apply rounded-2xl p-5 text-white shadow-card;
+  }
+
+  /* ---- App input ---- */
+  .input {
+    @apply w-full px-4 py-2.5 rounded-xl border border-border bg-white text-body text-sm 
+           focus:outline-none focus:ring-2 focus:ring-indigo/30 focus:border-indigo 
+           transition-colors placeholder:text-muted;
+  }
+
+  /* ---- App table ---- */
+  .tbl-head {
+    @apply bg-surface text-xs text-muted uppercase tracking-wider font-semibold;
+  }
+  .tbl-row {
+    @apply border-t border-border hover:bg-surface/70 transition-colors;
   }
 }
 
@@ -16,7 +82,21 @@
     font-family: 'JetBrains Mono', monospace;
     font-variant-numeric: tabular-nums;
   }
+  /* stagger animation delays */
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
 }
 
-::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-thumb { background: #cfd3c9; border-radius: 8px; }
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-thumb { background: #C4B5FD; border-radius: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* Print styles for report PDF export */
+@media print {
+  aside, button, nav { display: none !important; }
+  main { margin: 0 !important; padding: 0 !important; }
+}
